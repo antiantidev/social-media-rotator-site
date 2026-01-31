@@ -3,57 +3,56 @@ class TokenEncoder {
   // Encode settings to Base64 token (JWT-like)
   static encode(settings) {
     try {
-      const jsonString = JSON.stringify(settings);
+      const json = JSON.stringify(settings);
 
-      // UTF-8 encode
-      const utf8Bytes = new TextEncoder().encode(jsonString);
+      // UTF-8 → Uint8Array
+      const bytes = new TextEncoder().encode(json);
 
-      // Convert to base64
+      // Uint8Array → binary string
       let binary = "";
-      utf8Bytes.forEach((b) => (binary += String.fromCharCode(b)));
+      for (const b of bytes) {
+        binary += String.fromCharCode(b);
+      }
 
-      const base64 = btoa(binary)
+      // Base64 URL-safe
+      return btoa(binary)
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
         .replace(/=+$/, "");
-
-      return base64;
     } catch (e) {
-      console.error("Token encode error:", e);
+      console.error("Encode error:", e);
       return null;
     }
   }
 
-  // Decode Base64 token back to settings
   static decode(token) {
     try {
       let base64 = token.replace(/-/g, "+").replace(/_/g, "/");
 
-      while (base64.length % 4) {
-        base64 += "=";
+      while (base64.length % 4) base64 += "=";
+
+      // Base64 → binary string
+      const binary = atob(base64);
+
+      // binary → Uint8Array
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
       }
 
-      const binary = atob(base64);
-      const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+      // UTF-8 decode đúng chuẩn
+      const json = new TextDecoder("utf-8").decode(bytes);
 
-      const jsonString = new TextDecoder().decode(bytes);
-      return JSON.parse(jsonString);
+      return JSON.parse(json);
     } catch (e) {
-      console.error("Token decode error:", e);
+      console.error("Decode error:", e);
       return null;
     }
   }
 
-  // Validate token format
   static isValid(token) {
-    if (!token || typeof token !== "string") return false;
     try {
-      const decoded = this.decode(token);
-      return (
-        decoded !== null &&
-        decoded.platforms &&
-        Array.isArray(decoded.platforms)
-      );
+      return !!this.decode(token);
     } catch {
       return false;
     }
