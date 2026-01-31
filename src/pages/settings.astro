@@ -1,0 +1,591 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  ><div class="fixed inset-0 w-full h-full bg-black -z-10">
+    <div
+      class="absolute inset-0 z-0 pointer-events-none"
+      style="
+          background:
+            radial-gradient(
+              ellipse 120% 80% at 70% 20%,
+              rgba(255, 20, 147, 0.15),
+              transparent 50%
+            ),
+            radial-gradient(
+              ellipse 100% 60% at 30% 10%,
+              rgba(0, 255, 255, 0.12),
+              transparent 60%
+            ),
+            radial-gradient(
+              ellipse 90% 70% at 50% 0%,
+              rgba(138, 43, 226, 0.18),
+              transparent 65%
+            ),
+            radial-gradient(
+              ellipse 110% 50% at 80% 30%,
+              rgba(255, 215, 0, 0.08),
+              transparent 40%
+            ),
+            #000000;
+        "
+    >
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="glass-card border-b border-white/10 sticky top-0 z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
+          >
+            <i class="fas fa-layer-group text-white text-xl"></i>
+          </div>
+          <div>
+            <h1 class="text-xl md:text-2xl font-bold text-white">
+              Social Media Rotator Settings
+            </h1>
+            <p class="text-xs text-gray-400">
+              Shareable Overlay • No Account • No Storage
+            </p>
+          </div>
+        </div>
+        <div
+          class="hidden md:flex items-center gap-2 glass-card px-4 py-2 rounded-lg"
+        >
+          <i class="fa-solid fa-heart text-purple-400"></i>
+          <span class="text-xs text-gray-300"
+            >Hoang Sa & Truong Sa belong to Vietnam</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Noti -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div
+      class="flex flex-wrap items-center justify-center gap-4 text-md text-gray-400"
+    >
+      <span class="relative flex size-3">
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"
+        ></span>
+        <span class="relative inline-flex size-3 rounded-full bg-sky-500"
+        ></span>
+      </span>
+      <span>Helping your stream? You can support me here</span>
+      <a
+        href="https://paypal.me/chokernguyen"
+        class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10 text-xs text-gray-400"
+      >
+        <i class="fa-brands fa-paypal"></i>
+        <span>Paypal</span>
+      </a>
+      <a
+        href="https://ko-fi.com/chokernguyen"
+        class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10 text-xs text-gray-400"
+      >
+        <i class="fa-solid fa-link"></i>
+        <span>ko-fi</span>
+      </a>
+      <a
+        href="https://zypage.com/chokernguyen"
+        class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10 text-xs text-gray-400"
+      >
+        <i class="fa-solid fa-link"></i>
+        <span>Zypage</span>
+      </a>
+    </div>
+  </div>
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <!-- Left Sidebar - Settings -->
+      <div
+        class="xl:col-span-1 space-y-6 custom-scrollbar overflow-y-auto"
+        style="max-height: calc(100vh - 320px)"
+      >
+        <!-- Platform Settings -->
+        <div class="glass-card rounded-2xl p-6 animate-fadeInUp">
+          <div class="section-header">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-share-alt text-white"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Social Platforms</h2>
+            </div>
+          </div>
+
+          <div id="platformsList" class="space-y-3">
+            <!-- TikTok -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="tiktok"
+                    checked
+                  />
+                  <i class="fab fa-tiktok icon-tiktok text-xl"></i>
+                  <span class="font-medium text-white">TikTok</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="tiktok"
+                placeholder="@username"
+                value="@nguyennhatlinh.official"
+              />
+            </div>
+
+            <!-- Discord -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="discord"
+                    checked
+                  />
+                  <i class="fab fa-discord icon-discord text-xl"></i>
+                  <span class="font-medium text-white">Discord</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="discord"
+                placeholder="discord.gg/invite"
+                value="discord.gg/xunAChFVkc"
+              />
+            </div>
+
+            <!-- YouTube -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="youtube"
+                    checked
+                  />
+                  <i class="fab fa-youtube icon-youtube text-xl"></i>
+                  <span class="font-medium text-white">YouTube</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="youtube"
+                placeholder="@channel"
+                value="@chokernguyen"
+              />
+            </div>
+
+            <!-- Twitch -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="twitch"
+                  />
+                  <i class="fab fa-twitch icon-twitch text-xl"></i>
+                  <span class="font-medium text-white">Twitch</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="twitch"
+                placeholder="@username"
+              />
+            </div>
+
+            <!-- Facebook -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="facebook"
+                  />
+                  <i class="fab fa-facebook icon-facebook text-xl"></i>
+                  <span class="font-medium text-white">Facebook</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="facebook"
+                placeholder="facebook.com/page"
+              />
+            </div>
+
+            <!-- Instagram -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="instagram"
+                  />
+                  <i class="fab fa-instagram icon-instagram text-xl"></i>
+                  <span class="font-medium text-white">Instagram</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="instagram"
+                placeholder="@username"
+              />
+            </div>
+
+            <!-- X (Twitter) -->
+            <div class="glass-card glass-card-hover rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <label class="flex items-center gap-3 cursor-pointer flex-1">
+                  <input
+                    type="checkbox"
+                    class="platform-toggle toggle-checkbox"
+                    data-platform="x"
+                  />
+                  <i class="fab fa-x-twitter icon-x text-xl"></i>
+                  <span class="font-medium text-white">X (Twitter)</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                class="platform-input w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm transition-all text-white placeholder-gray-400"
+                data-platform="x"
+                placeholder="@username"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Timing Settings -->
+        <div
+          class="glass-card rounded-2xl p-6 animate-fadeInUp"
+          style="animation-delay: 0.1s"
+        >
+          <div class="section-header">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-clock text-white"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Animation Timing</h2>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label
+                class="block text-sm font-medium mb-2 flex items-center gap-2 text-gray-200"
+              >
+                <i class="fas fa-hourglass-half text-purple-400 text-xs"></i>
+                Display Duration (seconds)
+              </label>
+              <input
+                type="number"
+                id="holdTime"
+                class="w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg transition-all text-white"
+                value="9"
+                min="1"
+                max="60"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-medium mb-2 flex items-center gap-2 text-gray-200"
+              >
+                <i class="fas fa-play text-green-400 text-xs"></i>
+                Animation In (ms)
+              </label>
+              <input
+                type="number"
+                id="animInTime"
+                class="w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg transition-all text-white"
+                value="1000"
+                min="100"
+                max="5000"
+                step="100"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-medium mb-2 flex items-center gap-2 text-gray-200"
+              >
+                <i class="fas fa-stop text-red-400 text-xs"></i>
+                Animation Out (ms)
+              </label>
+              <input
+                type="number"
+                id="animOutTime"
+                class="w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg transition-all text-white"
+                value="1000"
+                min="100"
+                max="5000"
+                step="100"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Generate URL -->
+        <div
+          class="glass-card rounded-2xl p-6 animate-fadeInUp"
+          style="animation-delay: 0.2s"
+        >
+          <div class="section-header">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-link text-white"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Generate overlay URL</h2>
+            </div>
+          </div>
+
+          <button
+            id="generateBtn"
+            class="w-full btn-gradient-primary px-6 py-3.5 rounded-xl font-semibold mb-4 flex items-center justify-center gap-2 text-white shadow-lg"
+          >
+            <i class="fas fa-magic"></i>
+            <span>Generate overlay URL</span>
+          </button>
+
+          <div id="urlOutput" class="hidden space-y-4">
+            <!-- Token Display -->
+            <div>
+              <label
+                class="block text-xs font-medium text-gray-300 mb-2 flex items-center gap-2"
+              >
+                <i class="fas fa-key text-purple-400"></i>
+                Token (Base64):
+              </label>
+              <div
+                class="bg-black/30 border border-white/10 p-3 rounded-lg break-all text-xs font-mono text-purple-300 shadow-inner"
+              >
+                <span id="tokenDisplay"></span>
+              </div>
+            </div>
+
+            <!-- URL Display -->
+            <div>
+              <label
+                class="block text-xs font-medium text-gray-300 mb-2 flex items-center gap-2"
+              >
+                <i class="fas fa-globe text-blue-400"></i>
+                Full URL:
+              </label>
+              <div
+                class="bg-black/30 border border-white/10 p-3 rounded-lg break-all text-sm text-gray-200 shadow-inner"
+              >
+                <span id="generatedUrl"></span>
+              </div>
+            </div>
+
+            <!-- Token Info -->
+            <div id="tokenInfo" class="glass-card p-3 rounded-lg"></div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                id="copyBtn"
+                class="btn-gradient-success px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 text-white shadow-lg"
+              >
+                <i class="fas fa-copy"></i>
+                <span>Copy URL</span>
+              </button>
+              <button
+                id="shareUrlBtn"
+                class="btn-gradient-info px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 text-white shadow-lg"
+              >
+                <i class="fas fa-share-nodes"></i>
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load from Token -->
+        <div
+          class="glass-card rounded-2xl p-6 animate-fadeInUp"
+          style="animation-delay: 0.3s"
+        >
+          <div class="section-header">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-download text-white"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Load from Token</h2>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <input
+              type="text"
+              id="tokenInput"
+              class="w-full bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg text-sm font-mono transition-all text-white placeholder-gray-400"
+              placeholder="Paste token here..."
+            />
+            <button
+              id="loadFromTokenBtn"
+              class="w-full btn-gradient-secondary px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 text-white shadow-lg"
+            >
+              <i class="fas fa-upload"></i>
+              <span>Load Settings</span>
+            </button>
+          </div>
+
+          <div
+            class="mt-4 glass-card rounded-xl p-4 border border-yellow-500/20"
+          >
+            <div class="flex items-start gap-3">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg"
+              >
+                <i class="fas fa-lightbulb text-white text-sm"></i>
+              </div>
+              <div class="text-xs text-gray-300 space-y-2">
+                <div
+                  class="font-semibold text-yellow-300 flex items-center gap-2"
+                >
+                  <span>💡 How it works:</span>
+                </div>
+                <ul class="space-y-1.5 ml-1">
+                  <li class="flex items-start gap-2">
+                    <i class="fas fa-check text-green-400 mt-0.5 text-xs"></i>
+                    <span>Settings encoded in URL (Base64)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fas fa-check text-green-400 mt-0.5 text-xs"></i>
+                    <span>No storage needed, share anywhere</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fas fa-check text-green-400 mt-0.5 text-xs"></i>
+                    <span>Token is URL-safe and reversible</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Preview -->
+      <div class="xl:col-span-2">
+        <div
+          class="glass-card rounded-2xl p-6 animate-fadeInUp"
+          style="animation-delay: 0.4s; min-height: 700px"
+        >
+          <div
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center shadow-lg"
+              >
+                <i class="fas fa-tv text-white"></i>
+              </div>
+              <div>
+                <h2 class="text-lg font-bold text-white">Overlay Preview</h2>
+                <p class="text-xs text-gray-400">
+                  800×600 Browser Source Preview
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-2 glass-card px-3 py-2 rounded-lg"
+            >
+              <div
+                class="w-2 h-2 bg-green-400 rounded-full animate-pulse-slow shadow-lg shadow-green-400/50"
+              >
+              </div>
+              <span class="text-xs text-green-400 font-semibold">LIVE</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center min-h-[500px]">
+            <div class="preview-wrapper" id="previewWrapper">
+              <iframe
+                id="previewFrame"
+                src="/overlay"
+                class="preview-container"
+                style="border: none; background: transparent"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="glass-card border-t border-white/10 mt-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2 text-sm text-gray-400">
+          <i class="fas fa-code text-purple-400"></i>
+          <span>Made with</span>
+          <i class="fas fa-heart text-red-400 animate-pulse-slow"></i>
+          <span>by <b>Nhat Linh Nguyen</b> for streamers</span>
+        </div>
+        <div
+          class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400"
+        >
+          <a
+            href="https://github.com/antiantidev/social-media-rotator"
+            class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10"
+          >
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a
+            href="https://www.tiktok.com/@nguyennhatlinh.official"
+            class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10"
+          >
+            <i class="fa-brands fa-tiktok"></i>
+            <span>Tiktok</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@dayum.studio"
+            class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10"
+          >
+            <i class="fa-brands fa-youtube"></i>
+            <span>Youtube</span>
+          </a>
+          <a
+            href="#"
+            class="hover:text-purple-400 transition-colors flex items-center gap-2 glass-card px-3 py-1.5 rounded-lg hover:bg-white/10"
+          >
+            <i class="fa-brands fa-discord"></i>
+            <span>chokernguyen</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/settings.js"></script></Layout
+>

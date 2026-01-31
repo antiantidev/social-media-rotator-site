@@ -1,0 +1,26 @@
+---
+import OverlayLayout from "../layouts/OverlayLayout.astro";
+---
+
+<OverlayLayout>
+  <div class="flex justify-center items-center h-screen">
+    <div id="card" class="flex items-center gap-2 p-1 rounded-md shadow-lg">
+      <!-- Social icon -->
+      <img id="icon" class="w-12 h-12" alt="Platform icon" />
+
+      <!-- Social text -->
+      <span id="text" class="font-semibold text-base"></span>
+
+      <!-- CTA -->
+      <div
+        id="ctaBox"
+        class="flex gap-2 items-center justify-center ml-auto px-3 py-1.5 rounded-md text-sm font-medium transition-all"
+      >
+        <img id="ctaIcon" class="w-4 h-4" alt="CTA icon" />
+        <span id="cta"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/overlay.js"></script>
+</OverlayLayout>
