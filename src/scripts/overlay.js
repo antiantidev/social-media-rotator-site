@@ -77,72 +77,72 @@ function parseURLParams() {
 const PLATFORMS = {
   tiktok: {
     name: "TikTok",
-    icon: "/assets/icons8-tiktok-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-tiktok-480.png",
     bg: "border bg-black/40 border-white/20 text-white backdrop-blur-md",
     cta: {
       text: "Follow",
       bg: "border bg-black/40 border-white/20 text-white backdrop-blur-md",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   discord: {
     name: "Discord",
-    icon: "/assets/icons8-discord-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-discord-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Join",
       bg: "bg-[#5865F2] text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   youtube: {
     name: "YouTube",
-    icon: "/assets/icons8-youtube-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-youtube-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Subscribe",
       bg: "bg-red-600 text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   twitch: {
     name: "Twitch",
-    icon: "/assets/icons8-twitch-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-twitch-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Follow",
       bg: "bg-[#9146FF] text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   facebook: {
     name: "Facebook",
-    icon: "/assets/icons8-facebook-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-facebook-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Follow",
       bg: "bg-[#1877F2] text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   instagram: {
     name: "Instagram",
-    icon: "/assets/icons8-instagram-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-instagram-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Follow",
       bg: "bg-gradient-to-r from-pink-500 to-purple-600 text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
   x: {
     name: "X",
-    icon: "/assets/icons8-x-480.png",
+    icon: "/social-media-rotator-site/assets/icons8-x-480.png",
     bg: "bg-white text-black",
     cta: {
       text: "Follow",
       bg: "bg-black text-white",
-      icon: "/assets/icons8-heart-90-white.png",
+      icon: "/social-media-rotator-site/assets/icons8-heart-90-white.png",
     },
   },
 };
