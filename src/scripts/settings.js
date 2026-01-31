@@ -367,7 +367,7 @@ class SettingsController {
     if (!token) return;
 
     // Go up one level from settings to repo root
-    const baseUrl = "./overlay";
+    const baseUrl = "../overlay";
     this.elements.previewFrame.src = `${baseUrl}?t=${token}`;
   }
 
