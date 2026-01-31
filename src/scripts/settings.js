@@ -250,7 +250,7 @@ class SettingsController {
     const settings = this.getSettings();
     const pathParts = window.location.pathname.split("/");
     const repoName = pathParts[1];
-    const baseUrl = `${window.location.origin}/${repoName}`;
+    const baseUrl = `${window.location.origin}/${repoName}/overlay`;
     const params = new URLSearchParams();
     params.set("data", JSON.stringify(settings.platforms));
     params.set("hold", settings.holdTime);
