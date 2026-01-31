@@ -4,11 +4,19 @@ class TokenEncoder {
   static encode(settings) {
     try {
       const jsonString = JSON.stringify(settings);
-      // Convert to Base64 URL-safe
-      const base64 = btoa(jsonString)
+
+      // UTF-8 encode
+      const utf8Bytes = new TextEncoder().encode(jsonString);
+
+      // Convert to base64
+      let binary = "";
+      utf8Bytes.forEach((b) => (binary += String.fromCharCode(b)));
+
+      const base64 = btoa(binary)
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
-        .replace(/=/g, "");
+        .replace(/=+$/, "");
+
       return base64;
     } catch (e) {
       console.error("Token encode error:", e);
@@ -19,15 +27,16 @@ class TokenEncoder {
   // Decode Base64 token back to settings
   static decode(token) {
     try {
-      // Restore Base64 padding and characters
       let base64 = token.replace(/-/g, "+").replace(/_/g, "/");
 
-      // Add padding
       while (base64.length % 4) {
         base64 += "=";
       }
 
-      const jsonString = atob(base64);
+      const binary = atob(base64);
+      const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+
+      const jsonString = new TextDecoder().decode(bytes);
       return JSON.parse(jsonString);
     } catch (e) {
       console.error("Token decode error:", e);
