@@ -3,56 +3,48 @@ class TokenEncoder {
   // Encode settings to Base64 token (JWT-like)
   static encode(settings) {
     try {
-      const json = JSON.stringify(settings);
-
-      // UTF-8 → Uint8Array
-      const bytes = new TextEncoder().encode(json);
-
-      // Uint8Array → binary string
-      let binary = "";
-      for (const b of bytes) {
-        binary += String.fromCharCode(b);
-      }
-
-      // Base64 URL-safe
-      return btoa(binary)
+      const jsonString = JSON.stringify(settings);
+      // Convert to Base64 URL-safe
+      const base64 = btoa(jsonString)
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
-        .replace(/=+$/, "");
+        .replace(/=/g, "");
+      return base64;
     } catch (e) {
-      console.error("Encode error:", e);
+      console.error("Token encode error:", e);
       return null;
     }
   }
 
+  // Decode Base64 token back to settings
   static decode(token) {
     try {
+      // Restore Base64 padding and characters
       let base64 = token.replace(/-/g, "+").replace(/_/g, "/");
 
-      while (base64.length % 4) base64 += "=";
-
-      // Base64 → binary string
-      const binary = atob(base64);
-
-      // binary → Uint8Array
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
+      // Add padding
+      while (base64.length % 4) {
+        base64 += "=";
       }
 
-      // UTF-8 decode đúng chuẩn
-      const json = new TextDecoder("utf-8").decode(bytes);
-
-      return JSON.parse(json);
+      const jsonString = atob(base64);
+      return JSON.parse(jsonString);
     } catch (e) {
-      console.error("Decode error:", e);
+      console.error("Token decode error:", e);
       return null;
     }
   }
 
+  // Validate token format
   static isValid(token) {
+    if (!token || typeof token !== "string") return false;
     try {
-      return !!this.decode(token);
+      const decoded = this.decode(token);
+      return (
+        decoded !== null &&
+        decoded.platforms &&
+        Array.isArray(decoded.platforms)
+      );
     } catch {
       return false;
     }
