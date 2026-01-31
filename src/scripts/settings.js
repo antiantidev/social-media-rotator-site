@@ -217,7 +217,7 @@ class SettingsController {
     // Gets the base path (e.g., /social-media-rotator/)
     const pathParts = window.location.pathname.split("/");
     const repoName = pathParts[1]; // Gets 'social-media-rotator'
-    const baseUrl = `${window.location.origin}/${repoName}`;
+    const baseUrl = `${window.location.origin}/${repoName}/overlay`;
     const tokenUrl = `${baseUrl}?t=${token}`;
 
     this.elements.generatedUrl.textContent = tokenUrl;
