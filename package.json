@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "build:overlay-runtime": "node scripts/build-overlay-runtime.mjs",
+    "predev": "npm run build:overlay-runtime",
+    "prebuild": "npm run build:overlay-runtime",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

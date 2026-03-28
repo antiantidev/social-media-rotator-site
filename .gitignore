@@ -18,6 +18,7 @@ node_modules/
 # framework / platform caches
 .vite/
 .vercel/
+public/scripts/overlay.js
 
 # logs
 npm-debug.log*

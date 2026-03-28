@@ -1,6 +1,6 @@
 ---
 import OverlayLayout from "../layouts/OverlayLayout.astro";
-import overlayScriptUrl from "../scripts/overlay.ts?url";
+const overlayScriptSrc = "../scripts/overlay.js";
 ---
 
 <OverlayLayout>
@@ -49,5 +49,5 @@ import overlayScriptUrl from "../scripts/overlay.ts?url";
     </div>
   </div>
 
-  <script type="module" src={overlayScriptUrl}></script>
+  <script type="module" src={overlayScriptSrc}></script>
 </OverlayLayout>
