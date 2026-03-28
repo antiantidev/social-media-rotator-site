@@ -1,26 +1,47 @@
 ---
 import OverlayLayout from "../layouts/OverlayLayout.astro";
+import overlayScriptUrl from "../scripts/overlay.ts?url";
 ---
 
 <OverlayLayout>
-  <div class="flex justify-center items-center h-screen">
-    <div id="card" class="flex items-center gap-2 p-1 rounded-md shadow-lg">
-      <!-- Social icon -->
-      <img id="icon" class="w-12 h-12" alt="Platform icon" />
+  <div class="overlay-stage">
+    <div id="cardFrame" class="overlay-cardFrame">
+      <div id="overlayLoader" class="overlay-loader" aria-hidden="true">
+        <div class="overlay-loader__badge">
+          <span class="overlay-loader__pulse"></span>
+        </div>
+        <div class="overlay-loader__copy">
+          <span class="overlay-loader__eyebrow">Loading Overlay</span>
+          <span class="overlay-loader__title">Made with &lt;3 For Streamer</span>
+          <span class="overlay-loader__byline">by Nhat Linh Nguyen</span>
+        </div>
+      </div>
+      <div id="overlayEmptyState" class="overlay-emptyState" hidden aria-hidden="true">
+        <span class="overlay-emptyState__eyebrow">No active platforms</span>
+        <span class="overlay-emptyState__title">
+          Enable at least one social profile to resume the live overlay.
+        </span>
+        <span class="overlay-emptyState__body">
+          The preview clears to this state whenever every row is turned off.
+        </span>
+      </div>
+      <div id="card" class="overlay-card" style="visibility:hidden;opacity:0;">
+        <div class="overlay-card__iconWrap">
+          <span id="icon" class="overlay-card__iconGlyph" aria-hidden="true"></span>
+        </div>
 
-      <!-- Social text -->
-      <span id="text" class="font-semibold text-base"></span>
+        <div class="overlay-copy">
+          <span id="label" class="overlay-label"></span>
+          <span id="text" class="overlay-text"></span>
+        </div>
 
-      <!-- CTA -->
-      <div
-        id="ctaBox"
-        class="flex gap-2 items-center justify-center ml-auto px-3 py-1.5 rounded-md text-sm font-medium transition-all"
-      >
-        <img id="ctaIcon" class="w-4 h-4" alt="CTA icon" />
-        <span id="cta"></span>
+        <div id="ctaBox" class="overlay-cta overlay-cta--default">
+          <img id="ctaIcon" alt="CTA icon" />
+          <span id="ctaText" class="overlay-cta__text"></span>
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="../scripts/overlay.js"></script>
+  <script type="module" src={overlayScriptUrl}></script>
 </OverlayLayout>

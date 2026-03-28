@@ -1,107 +1,97 @@
-<!-- Hero Section -->
-<section
-  class="relative min-h-screen flex items-center justify-center px-4 py-20 pt-32"
->
-  <div class="max-w-6xl mx-auto text-center relative z-10">
-    <div class="mb-8 animate-fadeInUp">
-      <!-- Badge -->
-      <div
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-8"
-      >
-        <span class="relative flex h-3 w-3">
-          <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-          ></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"
-          ></span>
-        </span>
-        <span class="text-sm text-gray-300">Live & Ready for Streaming</span>
-      </div>
+---
+import { sitePath } from "../lib/site.ts";
+---
 
-      <h1
-        class="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient text-glow"
-      >
-        Social Media<br />Rotator
-      </h1>
-      <p class="text-xl md:text-3xl text-gray-300 mb-6 font-light">
-        Showcase your social links in
-        <span class="text-purple-400 font-semibold">real time</span>
-      </p>
-      <p
-        class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed"
-      >
-        The ultimate streaming overlay that helps your audience discover and
-        follow you across all platforms. Professional, clean, and effortless.
-      </p>
-    </div>
+<section class="px-4 pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-end">
+      <div class="animate-fadeInUp">
+        <span class="eyebrow">Light theme only</span>
+        <h1 class="mt-6 max-w-3xl text-5xl font-semibold tracking-[-0.05em] text-[var(--text)] sm:text-6xl lg:text-[5.7rem]">
+          Rotate your socials with a calm, monochrome control surface.
+        </h1>
+        <p class="hero-lead mt-6 max-w-2xl">
+          Social Media Rotator turns stream overlay links into a browser source that is easy to configure, easy to share,
+          and easy to read on top of any scene.
+        </p>
 
-    <div
-      class="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fadeInUp"
-      style="animation-delay: 0.2s"
-    >
-      <a
-        href="./settings"
-        class="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-purple-500/50 hover:shadow-2xl hover:scale-105 glow overflow-hidden"
-      >
-        <span class="absolute inset-0 shimmer"></span>
-        <svg
-          class="w-5 h-5 mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-          ></path>
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-        </svg>
-        <span class="relative">Open Settings</span>
-      </a>
-      <a
-        href="./overlay"
-        class="group inline-flex items-center justify-center px-8 py-4 glass-effect text-white font-semibold rounded-xl transition-all duration-300 hover:bg-gray-800 shadow-lg hover:shadow-2xl hover:scale-105"
-      >
-        <svg
-          class="w-5 h-5 mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-          ></path>
-        </svg>
-        <span>Open Overlay</span>
-      </a>
-    </div>
-
-    <!-- Stats -->
-    <div class="grid grid-cols-3 gap-8 mt-20 max-w-3xl mx-auto">
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-purple-400 mb-2">
-          100%
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href={sitePath("settings/")} class="button-primary">
+            <i class="fas fa-gear"></i>
+            <span>Open settings</span>
+          </a>
+          <a href={sitePath("overlay/")} class="button-secondary">
+            <i class="fas fa-tv"></i>
+            <span>Preview overlay</span>
+          </a>
         </div>
-        <div class="text-sm text-gray-400">Browser-Based</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-pink-400 mb-2">0ms</div>
-        <div class="text-sm text-gray-400">Latency</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-blue-400 mb-2">
-          5min
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="status-pill"><i class="fas fa-circle text-[0.5rem] text-[var(--accent)]"></i> Monochrome UI</span>
+          <span class="status-pill"><i class="fas fa-circle text-[0.5rem] text-[var(--accent-2)]"></i> Fast setup</span>
+          <span class="status-pill"><i class="fas fa-circle text-[0.5rem] text-[var(--accent-3)]"></i> Shareable token</span>
         </div>
-        <div class="text-sm text-gray-400">Setup Time</div>
+      </div>
+
+      <div class="animate-fadeInUp lg:ml-auto" style="animation-delay: 120ms">
+        <div class="section-surface overflow-hidden p-5 sm:p-6 lg:p-7">
+          <div class="flex items-center justify-between gap-4 border-b border-[var(--line)] pb-5">
+            <div>
+              <p class="eyebrow">Preview board</p>
+              <p class="mt-2 text-sm text-[var(--text-muted)]">One quiet card with enough hierarchy to trust at a glance.</p>
+            </div>
+            <span class="soft-note shrink-0">800 × 600</span>
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-[1.05fr_.95fr]">
+            <div class="surface-soft rounded-[1.5rem] p-5">
+              <div class="flex items-start gap-3">
+                <span class="step-index text-sm">1</span>
+                <div>
+                  <p class="text-2xl font-semibold tracking-[-0.04em] text-[var(--text)]">Social cards in motion</p>
+                  <p class="mt-1 text-sm leading-6 text-[var(--text-muted)]">Readable, quiet, and premium without decoration.</p>
+                </div>
+              </div>
+              <div class="mt-5 space-y-3">
+                <div class="flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-white px-4 py-3 shadow-sm">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--line)] bg-[var(--bg-panel-soft)] text-[var(--text)]">
+                    <i class="fab fa-tiktok text-lg"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-[var(--text)]">TikTok</p>
+                    <p class="truncate text-sm text-[var(--text-muted)]">@nguyennhatlinh.official</p>
+                  </div>
+                  <span class="ml-auto rounded-full border border-[var(--line)] bg-[var(--bg-panel-soft)] px-3 py-1 font-mono text-[0.7rem] tracking-[0.16em] text-[var(--text-muted)]">Active</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-white px-4 py-3 shadow-sm">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--line)] bg-[var(--bg-panel-soft)] text-[var(--text)]">
+                    <i class="fab fa-youtube text-lg"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-[var(--text)]">YouTube</p>
+                    <p class="truncate text-sm text-[var(--text-muted)]">@chokernguyen</p>
+                  </div>
+                  <span class="ml-auto rounded-full border border-[var(--line)] bg-[var(--bg-panel-soft)] px-3 py-1 font-mono text-[0.7rem] tracking-[0.16em] text-[var(--text-muted)]">Rotating</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid gap-3">
+              <div class="surface-soft rounded-[1.35rem] p-4">
+                <p class="text-[0.68rem] uppercase tracking-[0.2em] text-[var(--text-soft)]">Token</p>
+                <p class="mt-2 text-sm text-[var(--text)]">URL-safe payload, copyable in one click.</p>
+              </div>
+              <div class="surface-soft rounded-[1.35rem] p-4">
+                <p class="text-[0.68rem] uppercase tracking-[0.2em] text-[var(--text-soft)]">Timing</p>
+                <p class="mt-2 text-sm text-[var(--text)]">Smooth in, calm hold, intentional exit.</p>
+              </div>
+              <div class="surface-soft rounded-[1.35rem] p-4">
+                <p class="text-[0.68rem] uppercase tracking-[0.2em] text-[var(--text-soft)]">Mood</p>
+                <p class="mt-2 text-sm text-[var(--text)]">Soft surfaces, sharp contrast, restrained geometry.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

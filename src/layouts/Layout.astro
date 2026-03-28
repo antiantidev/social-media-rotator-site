@@ -1,13 +1,12 @@
 ---
 import "../styles/global.css";
-import {
-  Image,
-  Picture,
-  getImage,
-  inferRemoteSize,
-  getConfiguredImageService,
-  imageConfig,
-} from "astro:assets";
+import { sitePath } from "../lib/site.ts";
+
+const {
+  title = "Social Media Rotator",
+  description = "Browser-based social media rotator overlay for streamers.",
+  bodyClass = "",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,24 +14,15 @@ import {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/social-media-rotator-site/favicon.svg"
-    />
-    <link rel="icon" href="/social-media-rotator-site/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <meta name="description" content={description} />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="icon" type="image/svg+xml" href={sitePath("favicon.svg")} />
+    <link rel="icon" href={sitePath("favicon.ico")} />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{title}</title>
   </head>
-  <body class="bg-gray-950 text-gray-100 antialiased overflow-x-hidden">
+  <body class:list={["site-shell antialiased overflow-x-hidden", bodyClass]}>
     <slot />
   </body>
 </html>
