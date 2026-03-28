@@ -1,3 +1,3 @@
 [mcp_servers.stitch]
 url = "https://stitch.googleapis.com/mcp"
-http_headers = { "X-Goog-Api-Key" = "AQ.Ab8RN6IB6uL-m4qgCOtQec6RgBxaOgrCPFttbziPLxfTXZoW5w" }
+# Configure X-Goog-Api-Key locally outside the repository.
