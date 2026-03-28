@@ -3,9 +3,21 @@ dist/
 
 # generated types
 .astro/
+coverage/
+*.tsbuildinfo
+
+# local agent/tool workdirs
+.codex/
+.opencode/
+.agents/
+.stitch/
 
 # dependencies
 node_modules/
+
+# framework / platform caches
+.vite/
+.vercel/
 
 # logs
 npm-debug.log*
