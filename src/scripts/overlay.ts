@@ -17,6 +17,7 @@ const DEFAULT_CONFIG = {
   APPEARANCE: DEFAULT_OVERLAY_APPEARANCE,
 };
 const MINIMUM_LOADER_MS = 1500;
+const PRELOAD_TIMEOUT_MS = 1000;
 
 function animationDuration(milliseconds) {
   return Math.max(0.12, milliseconds / 1000);
@@ -26,6 +27,10 @@ function wait(milliseconds: number) {
   return new Promise((resolve) => {
     window.setTimeout(resolve, milliseconds);
   });
+}
+
+async function waitForPreload(promise: Promise<unknown>) {
+  await Promise.race([promise, wait(PRELOAD_TIMEOUT_MS)]);
 }
 
 function springOptions(stiffness: number, damping: number, mass = 0.9) {
@@ -513,37 +518,47 @@ class OverlayController {
     const nonce = this.loadNonce;
     const loadStartedAt = performance.now();
 
-    if (!firstItem || !platform) {
-      this.setEmptyStateVisible(true);
-      if (this.elements.card instanceof HTMLElement) {
-        this.elements.card.style.visibility = "hidden";
+    try {
+      if (!firstItem || !platform) {
+        this.setEmptyStateVisible(true);
+        if (this.elements.card instanceof HTMLElement) {
+          this.elements.card.style.visibility = "hidden";
+        }
+        this.hideLoader();
+        notifyPreviewReady();
+        return;
       }
+
+      if (!this.elements.card) return;
+
+      this.setEmptyStateVisible(false);
+      this.showLoader();
+      this.elements.card.style.visibility = "hidden";
+      this.updateContent(firstItem);
+      this.updateBackground(platform);
+      this.applyAppearance();
+      await waitForPreload(this.preloadPlatformAssets(platform));
+      if (nonce !== this.loadNonce) return;
+      const elapsed = performance.now() - loadStartedAt;
+      if (elapsed < MINIMUM_LOADER_MS) {
+        await wait(MINIMUM_LOADER_MS - elapsed);
+      }
+      if (nonce !== this.loadNonce) return;
+      this.elements.card.style.visibility = "visible";
+      this.setEmptyStateVisible(false);
+      this.hideLoader();
+      await this.runMotionPhase("in");
+      if (nonce !== this.loadNonce) return;
+      notifyPreviewReady();
+    } catch (error) {
+      console.error("Overlay init failed:", error);
+      if (this.elements.card instanceof HTMLElement) {
+        this.elements.card.style.visibility = "visible";
+      }
+      this.setEmptyStateVisible(false);
       this.hideLoader();
       notifyPreviewReady();
-      return;
     }
-
-    if (!this.elements.card) return;
-
-    this.setEmptyStateVisible(false);
-    this.showLoader();
-    this.elements.card.style.visibility = "hidden";
-    this.updateContent(firstItem);
-    this.updateBackground(platform);
-    this.applyAppearance();
-    await this.preloadPlatformAssets(platform);
-    if (nonce !== this.loadNonce) return;
-    const elapsed = performance.now() - loadStartedAt;
-    if (elapsed < MINIMUM_LOADER_MS) {
-      await wait(MINIMUM_LOADER_MS - elapsed);
-    }
-    if (nonce !== this.loadNonce) return;
-    this.elements.card.style.visibility = "visible";
-    this.setEmptyStateVisible(false);
-    this.hideLoader();
-    await this.runMotionPhase("in");
-    if (nonce !== this.loadNonce) return;
-    notifyPreviewReady();
   }
 
   async updatePreview(nextSettings) {
@@ -562,34 +577,44 @@ class OverlayController {
       return;
     }
 
-    if (this.rotationData.length === 0) {
-      this.currentIndex = 0;
-      this.setEmptyStateVisible(true);
-      this.elements.card.style.visibility = "hidden";
+    try {
+      if (this.rotationData.length === 0) {
+        this.currentIndex = 0;
+        this.setEmptyStateVisible(true);
+        this.elements.card.style.visibility = "hidden";
+        this.hideLoader();
+        notifyPreviewReady();
+        return;
+      }
+
+      if (this.currentIndex >= this.rotationData.length) {
+        this.currentIndex = 0;
+      }
+
+      const currentItem = this.rotationData[this.currentIndex] ?? this.rotationData[0];
+      const platform = PLATFORM_MAP[currentItem.platform];
+      if (!platform) return;
+
+      this.elements.card.style.visibility = "visible";
+      this.setEmptyStateVisible(false);
+      this.hideLoader();
+      await waitForPreload(this.preloadPlatformAssets(platform));
+      if (nonce !== this.loadNonce) return;
+      this.updateContent(currentItem);
+      this.updateBackground(platform);
+      this.applyAppearance();
+      if (nonce !== this.loadNonce) return;
+      notifyPreviewReady();
+      this.start();
+    } catch (error) {
+      console.error("Overlay preview update failed:", error);
+      if (this.elements.card instanceof HTMLElement) {
+        this.elements.card.style.visibility = "visible";
+      }
+      this.setEmptyStateVisible(false);
       this.hideLoader();
       notifyPreviewReady();
-      return;
     }
-
-    if (this.currentIndex >= this.rotationData.length) {
-      this.currentIndex = 0;
-    }
-
-    const currentItem = this.rotationData[this.currentIndex] ?? this.rotationData[0];
-    const platform = PLATFORM_MAP[currentItem.platform];
-    if (!platform) return;
-
-    this.elements.card.style.visibility = "visible";
-    this.setEmptyStateVisible(false);
-    this.hideLoader();
-    await this.preloadPlatformAssets(platform);
-    if (nonce !== this.loadNonce) return;
-    this.updateContent(currentItem);
-    this.updateBackground(platform);
-    this.applyAppearance();
-    if (nonce !== this.loadNonce) return;
-    notifyPreviewReady();
-    this.start();
   }
 
   start() {
